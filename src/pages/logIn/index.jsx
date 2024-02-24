@@ -16,14 +16,14 @@ const Login = () => {
   const logIn = (e) => {
     e.preventDefault();
 
-    const { email, password } = userInformation;
+    const { username , email, password } = userInformation;
 
     // sign in existigg user
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        navigate("/home");
+        navigate(`/home/${username}`);
         // ...
       })
       .catch((error) => {
@@ -37,6 +37,14 @@ const Login = () => {
     <div className="container">
       <h1>log in</h1>
       <form onSubmit={logIn}>
+      <Input
+            onChange={(e) => inputFields(e.target.id, e.target.value)}
+            id="username"
+            required={true}
+            type="text"
+            label="user name"
+            placeholder="write your username"
+          />
         <Input
           onChange={(e) => inputFields(e.target.id, e.target.value)}
           id="email"

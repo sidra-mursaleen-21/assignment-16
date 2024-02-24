@@ -16,14 +16,14 @@ const Signup = () => {
   const signUp = (e) => {
     e.preventDefault();
 
-    const { email, password } = userInformation;
+    const { username , email, password } = userInformation;
 
     // sign up new user
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed up
         const user = userCredential.user;
-        navigate("/home");
+        navigate(`/home/${username}`);
         // ...
       })
       .catch((error) => {
